@@ -22,6 +22,32 @@ async function getComments02(): Promise<string[] | undefined> {
   return data;
 }
 
+async function pushComments01(input: string): Promise<string[] | undefined> {
+  const data = await fetch('/api/vercel-kv/pushComments01', {
+    method: 'POST',
+    body: JSON.stringify({ newComment: input }),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      throw err;
+    });
+
+  return data;
+}
+
+async function pushComments02(input: string): Promise<string[] | undefined> {
+  const data = await fetch('/api/vercel-kv/pushComments02', {
+    method: 'POST',
+    body: JSON.stringify({ newComment: input }),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      throw err;
+    });
+
+  return data;
+}
+
 export default function NextKV() {
   const [comment01, setComment01] = useState<string[] | undefined>(undefined);
   const [comment02, setComment02] = useState<string[] | undefined>(undefined);
@@ -58,7 +84,15 @@ export default function NextKV() {
               value={input01}
               onChange={(e) => setInput01(e.target.value)}
             />
-            <button>
+            <button
+              onClick={() => {
+                pushComments01(input01)
+                  .then(async () => {
+                    const comments01 = await getComments01()
+                    setComment01(comments01);
+                  })
+              }}
+            >
               送信
             </button>
           </div>
@@ -78,7 +112,15 @@ export default function NextKV() {
               value={input02}
               onChange={(e) => setInput02(e.target.value)}
             />
-            <button>
+            <button
+              onClick={() => {
+                pushComments02(input02)
+                  .then(async () => {
+                    const comments02 = await getComments02()
+                    setComment02(comments02);
+                  })
+              }}
+            >
               送信
             </button>
           </div>
