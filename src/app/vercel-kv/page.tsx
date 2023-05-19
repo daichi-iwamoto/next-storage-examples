@@ -2,6 +2,26 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/kv.module.scss';
 
+async function getComments01(): Promise<string[] | undefined> {
+  const data = await fetch('/api/vercel-kv/getComments01')
+    .then((res) => res.json())
+    .catch((err) => {
+      throw err;
+    });
+
+  return data;
+}
+
+async function getComments02(): Promise<string[] | undefined> {
+  const data = await fetch('/api/vercel-kv/getComments02')
+    .then((res) => res.json())
+    .catch((err) => {
+      throw err;
+    });
+
+  return data;
+}
+
 export default function NextKV() {
   const [comment01, setComment01] = useState<string[] | undefined>(undefined);
   const [comment02, setComment02] = useState<string[] | undefined>(undefined);
@@ -9,11 +29,15 @@ export default function NextKV() {
   const [input02, setInput02] = useState<string>('');
 
   useEffect(() => {
-    const comments01 = ["コメント1", "コメント2", "コメント3"];
-    const comments02 = ["コメント1", "コメント2", "コメント3"];
+    const fetchData = async () => {
+      const comments01 = await getComments01();
+      const comments02 = await getComments02();
 
-    setComment01(comments01);
-    setComment02(comments02);
+      setComment01(comments01);
+      setComment02(comments02);
+    };
+
+    fetchData();
   }, []);
 
   return (
