@@ -49,8 +49,8 @@ async function pushComments02(input: string): Promise<string[] | undefined> {
 }
 
 export default function NextKV() {
-  const [comment01, setComment01] = useState<string[] | undefined>(undefined);
-  const [comment02, setComment02] = useState<string[] | undefined>(undefined);
+  const [comments01, setComments01] = useState<string[] | undefined>(undefined);
+  const [comments02, setComments02] = useState<string[] | undefined>(undefined);
   const [input01, setInput01] = useState<string>('');
   const [input02, setInput02] = useState<string>('');
 
@@ -59,8 +59,8 @@ export default function NextKV() {
       const comments01 = await getComments01();
       const comments02 = await getComments02();
 
-      setComment01(comments01);
-      setComment02(comments02);
+      setComments01(comments01);
+      setComments02(comments02);
     };
 
     fetchData();
@@ -73,7 +73,7 @@ export default function NextKV() {
         <div className={styles.board}>
           <h2>Comments01</h2>
           <div className={styles.comments}>
-            {comment01?.map((comment, i) => (
+            {comments01?.map((comment, i) => (
               <p key={i}>{comment}</p>
             ))}
           </div>
@@ -87,9 +87,9 @@ export default function NextKV() {
             <button
               onClick={() => {
                 pushComments01(input01)
-                  .then(async () => {
-                    const comments01 = await getComments01()
-                    setComment01(comments01);
+                  .then((comments01) => {
+                    setInput01('');
+                    setComments01(comments01);
                   })
               }}
             >
@@ -101,7 +101,7 @@ export default function NextKV() {
         <div className={styles.board}>
           <h2>Comments02</h2>
           <div className={styles.comments}>
-            {comment02?.map((comment, i) => (
+            {comments02?.map((comment, i) => (
               <p key={i}>{comment}</p>
             ))}
           </div>
@@ -115,9 +115,9 @@ export default function NextKV() {
             <button
               onClick={() => {
                 pushComments02(input02)
-                  .then(async () => {
-                    const comments02 = await getComments02()
-                    setComment02(comments02);
+                  .then((comments02) => {
+                    setInput02('');
+                    setComments02(comments02);
                   })
               }}
             >
