@@ -1,34 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Vercel Storage を Next13 で使用するデモ
 
-## Getting Started
+## 前準備
+デモを確認するにあたって、必要な前準備の説明です。
+> ※ 2023/05/22現在では Vercel Blob　が Private Beta なので waiting list に登録中
 
-First, run the development server:
+### 1. Vercel Dashboard で **KV** と **Postgres** を作成する
+[Vercel Dashboard の Storage](https://vercel.com/dashboard/stores)ページから、**KV**と**Postgres**を作成します。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<img width="531" alt="image" src="https://github.com/daichi-iwamoto/next-storage-examples/assets/34328392/3d6633bb-163b-404e-b6c2-31ce195287aa">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. `.env.local` の作成
+[`.env.example`](https://github.com/daichi-iwamoto/next-storage-examples/blob/main/.env.example) を参考に、**KV**と**Postgres**の環境変数を `.env.local` に作成する。
+<img width="1294" alt="image" src="https://github.com/daichi-iwamoto/next-storage-examples/assets/34328392/0b21ff9c-8fd5-4f02-bc8c-b0806064b540">
+<img width="1285" alt="image" src="https://github.com/daichi-iwamoto/next-storage-examples/assets/34328392/89ef3ede-dab7-45b4-9757-52af7f9cb4ca">
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
