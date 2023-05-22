@@ -123,7 +123,12 @@ export default function NextPostgres() {
                   // ユーザー追加処理
                   setShowModal(false)
                   addUser(inputName, inputMail)
-                    .then((users) => setUsers(users))
+                    .then((users) => {
+                      setSearchInput('')
+                      setInputName('')
+                      setInputMail('')
+                      setUsers(users)
+                    })
                 }}
               >
                 Submit
